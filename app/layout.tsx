@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
+import { Image } from "@nextui-org/react";
 
 export const metadata: Metadata = {
 	title: {
@@ -13,10 +14,7 @@ export const metadata: Metadata = {
 		template: `%s - ${siteConfig.name}`,
 	},
 	description: siteConfig.description,
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "white" },
-		{ media: "(prefers-color-scheme: dark)", color: "black" },
-	],
+
 	icons: {
 		icon: "/favicon.ico",
 		shortcut: "/favicon-16x16.png",
@@ -31,30 +29,20 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head />
+			<head>
+				<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+			</head>
 			<body
 				className={clsx(
-					"min-h-screen bg-background font-sans antialiased",
+					"min-h-screen font-sans antialiased",
 					fontSans.variable
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-screen">
-						<Navbar />
-						<main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+					<div className="bg-cover bg-center" style={{height: '100%', backgroundImage: "url('/test_bg.jpg')"}}>
+						<main className="container mx-auto max-w-7xl pt-8 px-40 pb-14">
 							{children}
 						</main>
-						<footer className="w-full flex items-center justify-center py-3">
-							<Link
-								isExternal
-								className="flex items-center gap-1 text-current"
-								href="https://nextui-docs-v2.vercel.app?utm_source=next-app-template"
-								title="nextui.org homepage"
-							>
-								<span className="text-default-600">Powered by</span>
-								<p className="text-primary">NextUI</p>
-							</Link>
-						</footer>
 					</div>
 				</Providers>
 			</body>
